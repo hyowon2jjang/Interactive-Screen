@@ -76,7 +76,6 @@ class App {
             for (let i = 0; i < this.totalParticles; i++) {
                 const item = this.particles[i];
                 item.animate(this.ctx, this.stageWidth, this.stageHeight);
-                console.log(this.stageHeight)
             }
         }
     }
@@ -97,8 +96,7 @@ class GlowParticle {
 
         this.x += this.vx;
         this.y -= this.vy;
-        this.vy -= 0.01 + Math.random() * 0.004
-        console.log(this.vx, this.vy)
+        this.vy -= 0.01 + Math.random() * 0.004;
 
         ctx.beginPath();
         ctx.fillStyle = 'white';

@@ -94,7 +94,6 @@ class App {
             this.imgPos.x, this.imgPos.y,
             this.imgPos.width, this.imgPos.height,
         );
-        console.log('hello3');
     }
 
     createParticles() {
