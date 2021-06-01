@@ -93,11 +93,11 @@ class Car {
         this.y2 = this.y1 + this.radius2 * Math.sin(this.theta2);
 
         this.theta1 += this.vtheta1;
-        let atheta1 = this.m1 * g * Math.cos(this.theta1) / 20000;
+        let atheta1 = Math.cos(this.theta1) / 3000 //* this.m1 * g;
         this.vtheta1 += atheta1;
 
         this.theta2 += this.vtheta2;
-        let atheta2 = this.m1 * g * Math.cos(this.theta2) / 20000;
+        let atheta2 = Math.cos(this.theta2) / 7000//* this.m1 * g ;
         this.vtheta2 += atheta2;
 
         ctx.beginPath();
