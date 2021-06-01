@@ -1,17 +1,17 @@
 const PI2 = Math.PI * 2
 let t = 0;
-let dt = 0.1;
+let dt = 0.01;
 
 stageWidth = document.body.clientWidth;
 stageHeight = document.body.clientHeight;
 
 const radiusT = [];
-const radiusC = [30, 40, 50, 40, 30];
+const radiusC = [30, 40, 40, 40, 30];
 const pos = [];
 let thetas = [];
 let vthetas = [];
 let atheta = [];
-const speed = [];
+const speed = [2, 3, 5, 8, 11];
 
 const radiusT1 = [];
 const radiusC1 = [30, 40, 50, 40, 30];
@@ -26,7 +26,7 @@ for (let i = 0; i < 5; i++) {
     //radiusC[i] = 40;
     thetas[i] = -PI2 * i / 36;
     vthetas[i] = 0;
-    speed[i] = 90 + 10 * i;
+    //speed[i] = 1 + 1 * i;
 }
 
 for (let i = 0; i < 5; i++) {
@@ -109,9 +109,10 @@ class Tail {
 
         for (let i = 0; i < thetas.length; i++) {
 
-            atheta[i] = Math.cos(t * PI2 / 1000 + PI2 / 4) / 600 * speed[i] / 90;
+            atheta[i] = Math.sin(t * PI2 / 10) / 6 * speed[i] + PI2 / 4;
             vthetas[i] += atheta[i] * dt;
             thetas[i] += vthetas[i] * dt;
+            thetas[i] = atheta[i];
 
             thetas1[i] += vthetas1[i];
             atheta1[i] = Math.cos(thetas1[i]) / 60000 * speed1[i] / 90;
