@@ -1,40 +1,41 @@
 const PI2 = Math.PI * 2
 let t = 0;
-let dt = 0.01;
+let dt = 0.07;
 
 stageWidth = document.body.clientWidth;
 stageHeight = document.body.clientHeight;
 
 const radiusT = [];
-const radiusC = [30, 40, 40, 40, 30];
+const radiusC = [];
 const pos = [];
 let thetas = [];
-let vthetas = [];
 let atheta = [];
-const speed = [2, 3, 5, 8, 11];
+const speed = [];
 
 const radiusT1 = [];
-const radiusC1 = [30, 40, 50, 40, 30];
+const radiusC1 = [];
 const pos1 = [];
 let thetas1 = [];
-let vthetas1 = [];
 let atheta1 = [];
 const speed1 = [];
 
-for (let i = 0; i < 5; i++) {
-    radiusT[i] = 30;
-    //radiusC[i] = 40;
-    thetas[i] = -PI2 * i / 36;
-    vthetas[i] = 0;
-    //speed[i] = 1 + 1 * i;
+for (let i = 0; i < 20; i++) {
+    radiusT[i] = 8;
+    radiusC[i] = 20 + 10 - 1 * (i)
+    thetas[i] = PI2 / 4;
+    speed[i] = 1 + 0.3 * i;
 }
 
-for (let i = 0; i < 5; i++) {
-    radiusT1[i] = 30;
-    //radiusC[i] = 40;
-    thetas1[i] = -PI2 * i / 36;
-    vthetas1[i] = 0;
-    speed1[i] = 90 + 10 * i;
+for (let i = 0; i < 30; i++) {
+    radiusT1[i] = 5;
+    if (i > 24) {
+        radiusC1[i] = 30;
+    } else {
+        radiusC1[i] = 10;
+    }
+    radiusC[24] = 20
+    thetas1[i] = PI2 / 4;
+    speed1[i] = 1 + 0.1 * i;
 }
 
 class App {
@@ -45,7 +46,7 @@ class App {
 
         this.pixelRatio = (window.devicePixelRatio > 1) ? 2 : 1;
 
-        this.totalParticles = 10;
+        this.totalParticles = 1;
         this.particles = [];
 
         window.addEventListener('resize', this.resize.bind(this), false);
@@ -99,24 +100,19 @@ class Tail {
 
         for (let i = 1; i < thetas.length; i++) {
             pos[i] = [];
-            pos1[i] = [];
             pos[i][0] = pos[i - 1][0] + radiusT[i] * Math.cos(thetas[i]);
             pos[i][1] = pos[i - 1][1] + radiusT[i] * Math.sin(thetas[i]);
-
+        }
+        for (let i = 1; i < thetas1.length; i++) {
+            pos1[i] = [];
             pos1[i][0] = pos1[i - 1][0] + radiusT1[i] * Math.cos(thetas1[i]);
             pos1[i][1] = pos1[i - 1][1] + radiusT1[i] * Math.sin(thetas1[i]);
         }
 
         for (let i = 0; i < thetas.length; i++) {
 
-            atheta[i] = Math.sin(t * PI2 / 10) / 6 * speed[i] + PI2 / 4;
-            vthetas[i] += atheta[i] * dt;
-            thetas[i] += vthetas[i] * dt;
+            atheta[i] = Math.sin(t * PI2 / 10) / 2 * speed[i] + PI2 / 4;
             thetas[i] = atheta[i];
-
-            thetas1[i] += vthetas1[i];
-            atheta1[i] = Math.cos(thetas1[i]) / 60000 * speed1[i] / 90;
-            vthetas1[i] += atheta1[i];
 
             ctx.beginPath();
             if (i == thetas.length - 1) {
@@ -127,20 +123,18 @@ class Tail {
             ctx.arc(pos[i][0], pos[i][1], radiusC[i], 0, PI2);
             ctx.fill();
             ctx.closePath();
-
-            this.draw1(ctx, i)
         }
-    }
 
-    draw1(ctx, i) {
-        ctx.beginPath();
-        if (i == thetas1.length - 2) {
-            ctx.fillStyle = 'white'
-        } else {
+        for (let i = 0; i < thetas1.length; i++) {
+
+            atheta1[i] = Math.sin(t * PI2 / 10) / 2 * speed1[i] + PI2 / 4;
+            thetas1[i] = atheta1[i];
+
+            ctx.beginPath();
             ctx.fillStyle = 'black';
+            ctx.arc(pos1[i][0], pos1[i][1], radiusC1[i], 0, PI2);
+            ctx.fill();
         }
-        ctx.arc(pos1[i][0], pos1[i][1], radiusC1[i], 0, PI2);
-        ctx.fill();
     }
 }
 
