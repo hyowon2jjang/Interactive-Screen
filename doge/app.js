@@ -2,9 +2,6 @@ const PI2 = Math.PI * 2
 let t = 0;
 let dt = 0.07;
 
-stageWidth = document.body.clientWidth;
-stageHeight = document.body.clientHeight;
-
 const radiusT = [];
 const radiusC = [];
 const pos = [];
