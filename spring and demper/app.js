@@ -81,7 +81,7 @@ class object {
         for (let i = 0; i < pos.length; i++) {
             ctx.beginPath();
             ctx.fillStyle = 'black'
-            ctx.arc(pos[i][0], pos[i][1], 10, 0, PI2);
+            ctx.arc(pos[i][0], pos[i][1], m * 5, 0, PI2);
             ctx.fill();
             ctx.closePath();
         }
