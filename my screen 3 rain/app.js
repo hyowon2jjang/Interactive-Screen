@@ -33,6 +33,7 @@ class App {
 
         this.createParticles();
     }
+
     createParticles() {
         let curColor = 0;
         this.particles = [];
