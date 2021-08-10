@@ -49,9 +49,6 @@ class App {
             const item = this.particles[i];
             item.animate(this.ctx, this.stageWidth, this.stageHeight);
         }
-
-        // this.ctx.
-
     }
 }
 
@@ -92,6 +89,12 @@ class GlowParticle {
             40, 0, PI2, false);
         ctx.fill();
         ctx.closePath();
+
+        ctx.fillStyle = 'black';
+        ctx.font = '30px serif';
+        ctx.fillText('Time = ' + parseInt(this.timer / 0.1) / 10, 100, 200);
+        ctx.fillText('Mass = ' + this.m + 'kg', 100, 240);
+        ctx.textAlign = "left";
     }
 }
 
