@@ -8,10 +8,10 @@ class App {
 
         this.pixelRatio = (window.devicePixelRatio > 1) ? 2 : 1;
 
-        this.totalParticlesx = 1;
-        this.totalParticlesy = 1;
-        this.minsize = 100;
-        this.maxsize = 200;
+        this.totalParticlesx = 5;
+        this.totalParticlesy = 5;
+        this.minsize = 50;
+        this.maxsize = 100;
         this.particles = [];
 
         window.addEventListener('resize', this.resize.bind(this), false);
